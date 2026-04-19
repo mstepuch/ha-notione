@@ -1,0 +1,42 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to notiOne",
+        "description": "Enter your notiOne account credentials.",
+        "data": {
+          "username": "Email",
+          "password": "Password"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Reconnect to notiOne",
+        "description": "Update your credentials to continue using the integration.",
+        "data": {
+          "username": "Email",
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to notiOne API.",
+      "invalid_auth": "Invalid authentication.",
+      "unknown": "Unexpected error. Check logs for details."
+    },
+    "abort": {
+      "already_configured": "This account is already configured.",
+      "reauth_successful": "Reauthentication successful."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "notiOne options",
+        "description": "Configure update behavior.",
+        "data": {
+          "scan_interval": "Polling interval in seconds"
+        }
+      }
+    }
+  }
+}

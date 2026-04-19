@@ -5,25 +5,26 @@
 
 This device tracker uses unofficial API to get data from https://panel.notione.com/
 
-## Configuration options
-| Key | Type | Required | Default | Description |
-| --- | --- | --- | --- | --- |
-| `username` | `string` | `True` | - | Username from notiOne |
-| `password` | `string` | `True` | - | Password from notiOne |
-| `scan_interval` | `int` | `False` | 300 | Scan interval |
+API research and payload notes are available in [docs/notione_api.md](docs/notione_api.md).
+Implementation roadmap is in [docs/notione_plan.md](docs/notione_plan.md).
+
+## Setup
+
+1. Install the integration files into `custom_components/notione`.
+2. Restart Home Assistant.
+3. Go to Settings -> Devices and Services -> Add Integration.
+4. Search for `notiOne`.
+5. Enter your account credentials in the integration UI.
+
+Polling interval can be changed later in the integration options.
 
 ## View
 ![Screenshot](https://github.com/n4ts/ha-notione/blob/master/images/notione.png?raw=true)
 
-## Usage:
-Add to configuration.yaml:
+## Legacy note
 
-```
-device_tracker:
-  - platform: notione
-    username: [USERNAME FROM NOTIONE]
-    password: [PASSWORD FROM NOTIONE]
-```
+Older versions used YAML credentials in `configuration.yaml`.
+The current integration path is UI-first through config entries.
 
 ## Installation
 

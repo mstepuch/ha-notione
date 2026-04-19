@@ -1,11 +1,12 @@
 {
   "domain": "notione",
   "name": "notiOne",
+  "config_flow": true,
   "homeassistant": "2025.6.1",
-  "version": "2025.6.19",
+  "version": "2026.4.19",
   "iot_class": "cloud_poll",
   "country": "PL",
-  "domains": ["device_tracker"],
+  "domains": ["device_tracker", "sensor"],
   "documentation": "https://github.com/n4ts/ha-notione",
   "dependencies": [],
   "codeowners": ["@n4ts"]
