@@ -7,7 +7,7 @@
   "iot_class": "cloud_poll",
   "country": "PL",
   "domains": ["device_tracker", "sensor"],
-  "documentation": "https://github.com/n4ts/ha-notione",
+  "documentation": "https://github.com/mstepuch/ha-notione",
   "dependencies": [],
   "codeowners": ["@n4ts"]
 }

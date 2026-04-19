@@ -1,47 +1,65 @@
-# notiOne Device Tracker
-[![GitHub Release][releases-shield]][releases]
-[![Hacs Badge][hacs-badge]][hacs-badge-url]
-[![PayPal_Me][paypal-me-shield]][paypal-me]
+# notiOne for Home Assistant
+[![HACS Custom][hacs-badge]][hacs-badge-url]
 
-This device tracker uses unofficial API to get data from https://panel.notione.com/
+Unofficial Home Assistant integration for notiOne cloud devices.
 
-API research and payload notes are available in [docs/notione_api.md](docs/notione_api.md).
-Implementation roadmap is in [docs/notione_plan.md](docs/notione_plan.md).
+This fork uses the legacy verified notiOne API flow behind a modern Home Assistant config-entry integration.
 
-## Setup
+## Current status
 
-1. Install the integration files into `custom_components/notione`.
-2. Restart Home Assistant.
-3. Go to Settings -> Devices and Services -> Add Integration.
-4. Search for `notiOne`.
-5. Enter your account credentials in the integration UI.
+- UI-based setup from Home Assistant settings
+- `device_tracker` entities for devices that expose valid GPS coordinates
+- battery `sensor` entities when the API returns a numeric battery level
+- configurable polling interval from integration options
 
-Polling interval can be changed later in the integration options.
+## Limitations
 
-## View
-![Screenshot](https://github.com/n4ts/ha-notione/blob/master/images/notione.png?raw=true)
-
-## Legacy note
-
-Older versions used YAML credentials in `configuration.yaml`.
-The current integration path is UI-first through config entries.
+- The integration relies on an unofficial API and may break if notiOne changes the backend.
+- Devices without usable coordinates will not create a `device_tracker` entity.
+- YAML credentials are no longer supported; configuration is done from the UI only.
 
 ## Installation
 
-Download [*device_tracker.py*](https://github.com/n4ts/ha-notione/raw/master/custom_components/notione/device_tracker.py), [*system_health.py*](https://github.com/n4ts/ha-notione/raw/master/custom_components/notione/system_health.py), [\_\_init\_\_.py*](https://github.com/n4ts/ha-notione/raw/master/custom_components/notione/__init__.py) and [*manifest.json*](https://github.com/n4ts/ha-notione/raw/master/custom_components/notione/manifest.json) to `config/custom_components/notione` directory:
-```bash
-mkdir -p custom_components/notione
-cd custom_components/notione
-wget https://github.com/n4ts/ha-notione/raw/master/custom_components/notione/device_tracker.py
-wget https://github.com/n4ts/ha-notione/raw/master/custom_components/notione/system_health.py
-wget https://github.com/n4ts/ha-notione/raw/master/custom_components/notione/manifest.json
-wget https://github.com/n4ts/ha-notione/raw/master/custom_components/notione/__init__.py
-```
+### HACS (Custom Repository)
 
-[releases]: https://github.com/n4ts/ha-notione/releases
-[releases-shield]: https://img.shields.io/github/release/n4ts/ha-notione.svg?style=for-the-badge
+1. Open HACS -> Integrations -> menu -> Custom repositories.
+2. Add `https://github.com/mstepuch/ha-notione` as an `Integration` repository.
+3. Install `notiOne`.
+4. Restart Home Assistant.
+
+### Manual installation
+
+1. Copy the whole `custom_components/notione` directory into `config/custom_components/notione`.
+2. Restart Home Assistant.
+
+## Configuration
+
+1. Open Settings -> Devices & Services -> Add Integration.
+2. Search for `notiOne`.
+3. Enter your notiOne account credentials.
+4. Adjust the polling interval in integration options if needed.
+
+The options flow currently accepts scan intervals from 60 to 3600 seconds.
+
+## Entities
+
+- `device_tracker`: one entity per device with a current location
+- `sensor`: battery level for devices that expose a numeric percentage
+
+## Documentation
+
+- API research and payload notes: [docs/notione_api.md](docs/notione_api.md)
+- Implementation roadmap: [docs/notione_plan.md](docs/notione_plan.md)
+- Executor handoff notes: [docs/codex_handoff.md](docs/codex_handoff.md)
+
+## View
+
+![Screenshot](images/notione.png)
+
+## Legacy note
+
+Older revisions used a YAML `device_tracker` platform. The current integration keeps `async_setup` as a compatibility no-op, but real setup is config-entry only.
+
 [hacs-badge]: https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge
 [hacs-badge-url]: https://github.com/custom-components/hacs
-[paypal-me-shield]: https://img.shields.io/badge/PayPal.Me-stanpielak-blue?style=for-the-badge
-[paypal-me]: https://www.paypal.me/stanpielak
 
